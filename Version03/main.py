@@ -9,7 +9,7 @@ Config.set('graphics', 'fullscreen', 'auto')
 
 class MyApp(App):
     def build(self):
-        return Button(text = "Кнопка 1",
+        return Button(text = "Кнопка 12",
                       font_size = 30,
                       background_color = [0, 1, 0, 1],
                       border = (20, 20, 20, 20)
