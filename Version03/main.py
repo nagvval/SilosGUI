@@ -65,6 +65,18 @@ class RoundedRectangleWidget(Widget):
             Color(0, 0, 0, 1)
             Line(points=[491, 111, 491, 192, 532, 192, 532, 111, 491, 111], width=1.5)
 
+            #Готвальд 2 шнек
+            Color(1, 1, 1, 1)
+            Rectangle(pos=(443, 156), size=(68, 12))
+            Color(0, 0, 0, 1)
+            Line(points=[443, 156, 443, 168, 511, 168, 511, 156, 443, 156], width=1.5)
+
+            #Готвальд 2 вигрузка
+            Color(1, 1, 1, 1)
+            Triangle(points=[491, 111, 532, 111, (1024/2), 70])
+            Color(0, 0, 0, 1)
+            Line(points=[491, 111, 532, 111, (1024/2), 70, 491, 111], width=1.5)
+
             
 
 
