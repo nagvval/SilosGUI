@@ -5,6 +5,7 @@ from kivy.graphics import *
 from kivy.graphics import Color, Ellipse, Rectangle, RoundedRectangle
 from kivy.graphics.texture import Texture
 from kivy.lang import Builder
+from kivy.uix.label import Label
 
 Config.set('graphics', 'borderless', '1')
 Config.set('graphics', 'width', '1024')
@@ -77,6 +78,60 @@ class RoundedRectangleWidget(Widget):
             Color(0, 0, 0, 1)
             Line(points=[491, 111, 532, 111, (1024/2), 70, 491, 111], width=1.5)
 
+            #Шнек на котельню
+            Color(1, 1, 1, 1)
+            Rectangle(pos=(327, 115), size=(164, 20))
+            Color(0, 0, 0, 1)
+            Line(points=[327, 115, 327, 135, 491, 135, 491, 115, 327, 115], width=1.5)
+
+            #Клапан на котельню
+            Color(1, 1, 1, 1)
+            Rectangle(pos=(327, 95), size=(40, 20))
+            Color(0, 0, 0, 1)
+            Line(points=[327, 95, 327, 115, 367, 115, 367, 95, 327, 95], width=1.5)
+
+            #Шнек на пілету
+            Color(1, 1, 1, 1)
+            Rectangle(pos=(532, 115), size=(164, 20))
+            Color(0, 0, 0, 1)
+            Line(points=[532, 115, 532, 135, 696, 135, 696, 115, 532, 115], width=1.5)
+
+            #Старт/стоп котельні
+            Color(1, 1, 1, 1)
+            Rectangle(pos=(319, 16), size=(56, 72))
+
+            #Зображення котельні
+            Rectangle(pos=(307, 9), size=(80, 80), source='3395582.png')
+
+            #Старт/стоп пілети
+            Color(1, 1, 1, 1)
+            Rectangle(pos=(667, 24), size=(47, 37))
+
+            #Зображення пілети
+            Rectangle(pos=(636, -12), size=(120, 120), source='8395064.png')
+
+            #Датчик підпору на шнеку котельні
+            Color(1, 1, 1, 1)
+            Ellipse(pos=(327, 141), size=(20, 20))
+            Color(0, 0, 0, 1)
+            Line(circle=(337, 151, 10), width=1.5)
+
+            #Датчик підпору на шнеку пілети
+            Color(1, 1, 1, 1)
+            Ellipse(pos=(676, 141), size=(20, 20))
+            Color(0, 0, 0, 1)
+            Line(circle=(686, 151, 10), width=1.5)
+
+            #Сигнал "STOP"
+            Color(0, 1, 0, 1)
+            Ellipse(pos=(161, 429), size=(75, 75))
+            Color(0, 0, 0, 1)
+            Line(circle=(198.5, 466.5, 37.5), width=1.5)
+            Label(pos=(149, 417), text="STOP", font_size=25, color=(1, 1, 1, 1))
+
+            #Напис "Початок процесу"
+            Label(pos=(745, 424), text="Початок процесу", font_size=30, color=(0, 0, 0, 1))
+            
             
 
 
