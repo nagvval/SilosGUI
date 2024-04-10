@@ -1,11 +1,15 @@
+import time
 from kivy.app import App
 from kivy.config import Config
 from kivy.uix.widget import Widget
 from kivy.graphics import *
 from kivy.graphics import Color, Ellipse, Rectangle, RoundedRectangle
 from kivy.graphics.texture import Texture
-from kivy.lang import Builder
 from kivy.uix.label import Label
+from kivy.uix.switch import Switch
+from kivy.clock import Clock
+from datetime import datetime
+from threading import Thread
 
 Config.set('graphics', 'borderless', '1')
 Config.set('graphics', 'width', '1024')
@@ -129,8 +133,68 @@ class RoundedRectangleWidget(Widget):
             Line(circle=(198.5, 466.5, 37.5), width=1.5)
             Label(pos=(149, 417), text="STOP", font_size=25, color=(1, 1, 1, 1))
 
+            #Напис "Останні 5 подій"
+            last5process = Label(pos=(90, 300), text="Останні 5 подій", font_size=30, color=(0, 0, 0, 1))
+
+            #Напис "Подія 1"
+            self.process1 = Label(pos=(60, 250), text=" ", font_size=15, color=(0, 0, 0, 1))
+
+            #Напис "Подія 2"
+            self.process2 = Label(pos=(60, 225), text=" ", font_size=15, color=(0, 0, 0, 1))
+
+            #Напис "Подія 3"
+            self.process3 = Label(pos=(60, 200), text=" ", font_size=15, color=(0, 0, 0, 1))
+
+            #Напис "Подія 4"
+            self.process4 = Label(pos=(60, 175), text=" ", font_size=15, color=(0, 0, 0, 1))
+
+            #Напис "Подія 5"
+            self.process5 = Label(pos=(60, 150), text=" ", font_size=15, color=(0, 0, 0, 1))
+
             #Напис "Початок процесу"
-            Label(pos=(745, 424), text="Початок процесу", font_size=30, color=(0, 0, 0, 1))
+            startProcess = Label(pos=(745, 424), text="Початок процесу", font_size=30, color=(0, 0, 0, 1))
+
+            #Перемикач "Початок процесу"
+            self.switch = Switch(active=False, pos=(750, 355))
+            self.add_widget(self.switch)
+            self.switch.bind(active=self.on_switch_active)
+
+            self.switch.bind(active=self.on_switch_active)
+            self.is_process_running = False
+
+    def on_switch_active(self, instance, value):
+        if value:
+            # Виконати дії, коли відкладка увімкнена
+            print("Switch is ON")
+            current_time = datetime.now().strftime("%H:%M:%S")
+            self.process5.text = self.process4.text
+            self.process4.text = self.process3.text
+            self.process3.text = self.process2.text
+            self.process2.text = self.process1.text
+            self.process1.text = f"{current_time} - Початок процесу"
+            if not self.is_process_running:
+                self.is_process_running = True
+                t = Thread(target=self.run_process)
+                t.start()
+        else:
+            # Виконати дії, коли відкладка вимкнена
+            print("Switch is OFF")
+            self.is_process_running = False
+
+    def run_process(self):
+        while self.is_process_running:
+            # Ваш код для процесу, який повинен виконуватись у циклі
+            print("1 sec")           
+            time.sleep(.5)  # Затримка 1 секунда між ітераціями циклу
+
+        # Код, що виконується після вимкнення процесу
+        current_time = datetime.now().strftime("%H:%M:%S")
+        self.process5.text = self.process4.text
+        self.process4.text = self.process3.text
+        self.process3.text = self.process2.text
+        self.process2.text = self.process1.text
+        self.process1.text = f"{current_time} - Кінець процесу"
+
             
             
 
